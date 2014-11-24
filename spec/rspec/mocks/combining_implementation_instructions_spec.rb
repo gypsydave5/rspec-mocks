@@ -145,16 +145,18 @@ module RSpec
         end
       end
 
+      describe "a double that already has a terminal block action" do
+        let(:dbl) { double }
+        let(:stubbed_double) { allow(dbl).to receive(:foo) }
+        before { stubbed_double { 1 } }
+
+        it "allows the block action to be overridden" do
+          stubbed_double.at_least(:once) { :at_least_block }
+          expect(dbl.foo(:arg)).to eq(:at_least_block)
+        end
+      end
+
       it 'allows the inner implementation block to be overriden' do
-        allow(RSpec).to receive(:warning)
-        dbl = double
-        stubbed_double = allow(dbl).to receive(:foo)
-
-        stubbed_double.with(:arg) { :with_block }
-        expect(dbl.foo(:arg)).to eq(:with_block)
-
-        stubbed_double.at_least(:once) { :at_least_block }
-        expect(dbl.foo(:arg)).to eq(:at_least_block)
       end
 
       it 'warns when the inner implementation block is overriden' do
