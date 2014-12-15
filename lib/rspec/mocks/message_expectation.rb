@@ -530,7 +530,6 @@ module RSpec
               implementation.call(*args, &block)
             elsif parent_stub
               parent_stub.invoke(nil, *args, &block)
-            else
             end
           ensure
             @actual_received_count += increment
