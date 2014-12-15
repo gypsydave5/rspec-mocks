@@ -544,7 +544,7 @@ module RSpec
         def raise_already_invoked_error_if_necessary(calling_customization)
           return unless has_been_invoked?
 
-          error_message = "Whilst setting up the expectation that #{orig_object.inspect} is going to receive " \
+          error_message = "While setting up the expectation that #{orig_object.inspect} is going to receive " \
             ":#{message}, you called the #{calling_customization} method after " \
             "invoking the mocked method. Using message expectations in this way is unsupported"
 
