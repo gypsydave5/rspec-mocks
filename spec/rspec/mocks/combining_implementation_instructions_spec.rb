@@ -156,9 +156,6 @@ module RSpec
         end
       end
 
-      it 'allows the inner implementation block to be overriden' do
-      end
-
       it 'warns when the inner implementation block is overriden' do
         expect(RSpec).to receive(:warning).with(/overriding a previous stub implementation of `foo`.*#{__FILE__}:#{__LINE__ + 1}/)
         allow(double).to receive(:foo).with(:arg) { :with_block }.at_least(:once) { :at_least_block }
